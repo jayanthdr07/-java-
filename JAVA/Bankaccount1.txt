@@ -1,0 +1,83 @@
+import java.util.*;
+class BankAccount{
+    private int accountnumber;
+    private String name;
+    private double bal;
+    
+    public BankAccount(int accno,String name,double bal){
+        this.accountnumber=accno;
+        this.name=name;
+        this.bal=bal;
+    }
+    public double getbal(){
+        return bal;
+    }
+    public void deposite(double amt){
+        bal+=amt;
+        System.out.println("amount "+amt+"deposited successfully");
+    }
+    public void withdraw( double amt){
+        if(amt<=bal){
+            bal-=amt;
+            System.out.println("withdraw successful");
+        }
+        else{
+            System.out.println("insufficient funds");
+        }
+    }
+        public void display(){
+            System.out.println("balance="+bal);
+        }
+    
+        public static void main(String args[]){
+            Scanner sc = new Scanner(System.in);
+
+        // User-defined inputs
+        System.out.print("Enter account number: ");
+        int accno = sc.nextInt();
+
+        System.out.print("Enter name: ");
+        String name = sc.next();
+
+        System.out.print("Enter initial balance: ");
+        double bal = sc.nextDouble();
+
+            BankAccount acc=new BankAccount(accno,name,bal);
+
+        while (true) {
+            System.out.println("\n--- MENU ---");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Display");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter deposit amount: ");
+                    double dep = sc.nextDouble();
+                    acc.deposite(dep);
+                    break;
+
+                case 2:
+                    System.out.print("Enter withdraw amount: ");
+                    double wit = sc.nextDouble();
+                    acc.withdraw(wit);
+                    break;
+
+                case 3:
+                    acc.display();
+                    break;
+
+                case 4:
+                    System.out.println("Thank you! Program stopped.");
+                    System.exit(0); // stops program
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+}
