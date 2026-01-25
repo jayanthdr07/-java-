@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Participant {
+class Participant extends Thread{
     private int pid;
     private String pname;
 
@@ -9,46 +9,56 @@ class Participant {
         this.pname = name;
     }
 
-    // synchronized method
-    public synchronized void welcome() {
-        System.out.println("Hi " + pname + " (ID: " + pid + ") welcome to event");
+    
+    public synchronized void welcome( ) {
+        System.out.print("\rHi " + pname + " (ID: " + pid + ") welcome to event");
+        System.out.flush();
+       
     }
 }
 
-class WelcomeThread extends Thread {
+class WelcomeW extends Thread {
     Participant p;
 
-    WelcomeThread(Participant p) {
+    WelcomeW(Participant p) {
         this.p = p;
     }
 
     public void run() {
         p.welcome();
+    
+    try{
+        Thread.sleep(2000);
     }
+    catch(InterruptedException e){
+        System.out.println(e);
+    }
+}
 }
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String args[]) throws InterruptedException{
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number of participants:");
+        System.out.println("Enter the number of participants:");
         int n = sc.nextInt();
 
-        Participant[] p = new Participant[n];
+        Participant p[] = new Participant[n];
         int cid = 101;
 
         for (int i = 0; i < n; i++) {
-            System.out.println("Enter name of participant " + (i + 1));
+            System.out.println("Enter the name of participant " + (i + 1));
             String name = sc.next();
 
-            p[i] = new Participant();
-            p[i].setpd(cid, name);
+            p[i] = new Participant();          
+            p[i].setpd(cid, name);             
             cid++;
         }
 
         for (int i = 0; i < n; i++) {
-            WelcomeThread w = new WelcomeThread(p[i]);
+            WelcomeW w = new WelcomeW(p[i]);
             w.start();
+            Thread.sleep(2000);
         }
     }
 }
