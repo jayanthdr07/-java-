@@ -6,16 +6,16 @@ class Time extends Thread {
             } catch (InterruptedException e) {
             }
         
-        for (int i = 0; i <= 60; i++) { // outer countdown (1 sec)
+        for (int i = 0; i <= 60; i++) { 
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
 
             for (int j = 0; j <= 10; j++) { 
-                System.out.print("\r" +k+" : "+ i + " : " + j + "   "); // extra spaces to clear previous digits
+                System.out.print("\r" +k+" : "+ i + " : " + j + "   "); 
                 try {
-                    Thread.sleep(100); // 0.1 sec delay
+                    Thread.sleep(100); 
                 } catch (InterruptedException e) {
                 }
             }
@@ -28,4 +28,5 @@ class Time extends Thread {
         new Time().start();
     }
 }
+
 
