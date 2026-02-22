@@ -46,7 +46,6 @@ class Fibonacci extends Thread {
 public class Main {
     public static void main(String[] args) {
 
-        // Main thread reference
         Thread mainThread = Thread.currentThread();
         mainThread.setName("Main-Thread");
         mainThread.setPriority(Thread.NORM_PRIORITY);
@@ -54,7 +53,6 @@ public class Main {
         Prime p = new Prime();
         Fibonacci f = new Fibonacci();
 
-        // Set name & priority
         p.setName("Prime-Thread");
         p.setPriority(Thread.MAX_PRIORITY);
 
@@ -64,10 +62,10 @@ public class Main {
         p.start();
         f.start();
 
-        // Display main thread details
         System.out.println("Name: " + mainThread.getName());
         System.out.println("ID: " + mainThread.getId());
         System.out.println("Priority: " + mainThread.getPriority());
         System.out.println("Is Alive: " + mainThread.isAlive());
     }
 }
+
